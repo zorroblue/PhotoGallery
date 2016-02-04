@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import model.Photo;
@@ -7,7 +8,7 @@ import view.ErrorDialog;
 
 public class Controller {
 	
-	private ArrayList<Photo> photos=new ArrayList<Photo>();
+	private static ArrayList<Photo> photos=new ArrayList<Photo>();
 	
 	public ArrayList<Photo> getPhotos() {
 		return photos;
@@ -36,6 +37,28 @@ public class Controller {
 		}
 		
 		photos.add(photo);
+		new ErrorDialog().invoke("Success!");
 		System.out.println("Added image!");
+	}
+	
+	public ArrayList<String> getTitles()
+	{	
+		ArrayList<String> items=new ArrayList<String>();
+		for(Photo p: photos)
+		{
+			items.add(p.getTitle());
+		}
+		
+		return items;
+	}
+	
+	public BufferedImage getImageByTitle(String title)
+	{
+		for(Photo p:photos)
+		{
+			if(p.getTitle().equals(title))
+				return p.getImage();
+		}
+		return null;
 	}
 }

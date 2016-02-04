@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import controller.MyFileIOManager;
+
 public class HomePage extends JFrame{
 
 //	private JFrame frame;
@@ -21,6 +23,7 @@ public class HomePage extends JFrame{
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		//new MyFileIOManager().readFromFile();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -92,6 +95,15 @@ public class HomePage extends JFrame{
 				HomePage.this.setVisible(false);
 				new UploadDialog().setVisible(true);
 				
+			}
+		});
+		
+		btnViewList.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				new ViewList().setVisible(true);
 			}
 		});
 	}

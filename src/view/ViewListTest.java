@@ -1,40 +1,48 @@
 package view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
-import javax.swing.ListModel;
 import javax.swing.WindowConstants;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
-import controller.Controller;
+public class ViewListTest {
 
-public class ViewList extends JFrame {
-
-	
-	private int width=650,height=450;
+	private JFrame frame=new JFrame();
+	private int width=600,height=450;
 	BufferedImage image=null;
-	
+	/*
+	 * Launch the application.
+	 *//*
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ViewList window = new ViewList();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}*/
 
 	/**
 	 * Create the application.
 	 */
-	public ViewList() {
+	public ViewListTest() {
 		initialize();
 	}
 
 /**
-	 * Initialize the contents of the this.
+	 * Initialize the contents of the frame.
 	 */
 	
 	
@@ -42,9 +50,9 @@ public class ViewList extends JFrame {
 		
 
 		
-		 this.setSize(width, height);
-	        this.setVisible(true);
-	        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		 frame.setSize(width, height);
+	        frame.setVisible(true);
+	        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 		
         
@@ -58,7 +66,7 @@ public class ViewList extends JFrame {
 			e.printStackTrace();
 		}
         
-        final JPanel glass = new JPanel(){
+        JPanel glass = new JPanel(){
 
 			@Override
 			protected void paintComponent(Graphics g) {
@@ -74,41 +82,25 @@ public class ViewList extends JFrame {
 
         
         JPanel controls = new JPanel();
-        controls.setSize(200, 750);
+        controls.setSize(150, 750);
   //      controls.setBackground(Color.RED);
+        	
         
-        ArrayList<String> listItems=new Controller().getTitles();
-        System.out.println("SIZE: "+listItems.size());
-        final JList list=new JList(listItems.toArray());
-        list.setLayoutOrientation(JList.VERTICAL);
-        controls.add(list);
+        
         controls.setVisible(true);
 
-        list.addListSelectionListener(new ListSelectionListener() {
-			
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				// TODO Auto-generated method stub
-				String s=(String)list.getSelectedValue();
-				image=new Controller().getImageByTitle(s);
-				glass.repaint();
-				
-			}
-		});
-        
-        
         JSplitPane splitPane = new JSplitPane();
         splitPane.setSize(width, height);
-        splitPane.setDividerSize(2);
-        splitPane.setDividerLocation(200);
+        splitPane.setDividerSize(0);
+        splitPane.setDividerLocation(150);
         splitPane.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         splitPane.setLeftComponent(controls);
         splitPane.setRightComponent(glass);
 
-        this.add(splitPane);
-      //  this.setVisible(true);
+        frame.add(splitPane);
+      //  frame.setVisible(true);
 		
-        
+	
 		
 	}
 	
@@ -116,5 +108,5 @@ public class ViewList extends JFrame {
 	{
 		return this.image;
 	}
-	
+
 }

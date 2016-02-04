@@ -3,12 +3,13 @@ package model;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.Serializable;
 
 import javax.imageio.ImageIO;
 
 import view.ErrorDialog;
 
-public class Photo 
+public class Photo implements Serializable 
 {
 	BufferedImage image;
 	String title;

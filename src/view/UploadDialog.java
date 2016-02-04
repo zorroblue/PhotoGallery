@@ -1,12 +1,10 @@
 package view;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
-import java.nio.channels.SelectableChannel;
 
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
@@ -16,12 +14,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import controller.Controller;
+import controller.MyFileIOManager;
 import model.Photo;
 
 public class UploadDialog extends JFrame{
 
 	private File fileSelected=null;
-	
+	private Controller controller=new Controller();
 	/**
 	 * Launch the application.
 	 */
@@ -154,7 +154,7 @@ public class UploadDialog extends JFrame{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-					if(tfLocation.getText().length()==0 || tfTitle.getText().length()==0|| tfAnno.getText().length()==0)
+					if(tfLocation.getText().equals("Enter...") || tfTitle.getText().length()==0|| tfAnno.getText().length()==0)
 					{
 						new ErrorDialog().invoke("Enter all values!!");
 						return;
@@ -177,13 +177,21 @@ public class UploadDialog extends JFrame{
 							try
 							{
 								photo.initialiseImage(fileSelected);
+								photo.setTitle(tfTitle.getText());
+								photo.setAnnotation(tfAnno.getText());
+								controller.getPhotos().add(photo);
+								
+								UploadDialog.this.setVisible(false);
+								new HomePage().setVisible(true);
 							}
 							catch(Exception exp)
 							{
 								new ErrorDialog().invoke("Error in processing image!Please try again!");
+								return;
 							}
 						}
 					}
+					
 				}
 			});
 			
