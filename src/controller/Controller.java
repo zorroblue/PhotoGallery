@@ -37,9 +37,7 @@ public class Controller {
 		}
 		
 		photos.add(photo);
-		new ErrorDialog().invoke("Success!");
-		System.out.println("Added image!");
-	}
+    }
 	
 	public ArrayList<String> getTitles()
 	{	

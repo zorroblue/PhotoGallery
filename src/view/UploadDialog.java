@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -51,6 +52,7 @@ public class UploadDialog extends JFrame{
 	private void initialize() {
 		
 		this.setBounds(100, 100, 450, 300);
+		
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.getContentPane().setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 		JLabel lblLocation = new JLabel("Enter file location :");
@@ -179,7 +181,7 @@ public class UploadDialog extends JFrame{
 								photo.initialiseImage(fileSelected);
 								photo.setTitle(tfTitle.getText());
 								photo.setAnnotation(tfAnno.getText());
-								controller.getPhotos().add(photo);
+								controller.addImage(photo);;
 								
 								UploadDialog.this.setVisible(false);
 					//			new HomePage().setVisible(true);
@@ -194,7 +196,7 @@ public class UploadDialog extends JFrame{
 					
 				}
 			});
-			
+			bSubmit.setBackground(Color.blue);
 		this.getContentPane().setLayout(groupLayout);
 		//this.getContentPane().add(lblEnterFileLocation);
 		
