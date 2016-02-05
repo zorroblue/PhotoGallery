@@ -12,8 +12,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import controller.MyFileIOManager;
+import javax.swing.UIManager;
 
 public class HomePage extends JFrame{
 
@@ -26,7 +25,17 @@ public class HomePage extends JFrame{
 		//new MyFileIOManager().readFromFile();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				try
+				{
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+				}
+				catch(Exception e)
+				{
+					//do nothing..skip 
+				}
+				
 				try {
+				    
 					new HomePage().setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,10 +58,12 @@ public class HomePage extends JFrame{
 		setTitle("Photo gallery");
 		setBounds(100,100,700,700);
 		
+		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		
+		panel.setBackground(Color.blue);
+		//panel.setOpaque(false);
 		panel.add(Box.createRigidArea(new Dimension(20,10)));
 		
 		JButton btnUpload = new JButton("UPLOAD");
@@ -79,9 +90,10 @@ public class HomePage extends JFrame{
 		
 		JButton btnViewList=new JButton("VIEW LIST");
 		btnViewList.setBackground(Color.BLACK);
-		//btnViewList.setOpaque(true);
+		
 		btnViewList.setForeground(Color.WHITE);
-		btnViewList.setContentAreaFilled(true);
+		btnViewList.setContentAreaFilled(false);
+		btnViewList.setOpaque(true);
 		panel.add(btnViewList);
 		
 		
@@ -92,7 +104,7 @@ public class HomePage extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				HomePage.this.setVisible(false);
+			//	HomePage.this.setVisible(false);
 				new UploadDialog().setVisible(true);
 				
 			}

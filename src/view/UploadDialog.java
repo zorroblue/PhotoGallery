@@ -182,7 +182,7 @@ public class UploadDialog extends JFrame{
 								controller.getPhotos().add(photo);
 								
 								UploadDialog.this.setVisible(false);
-								new HomePage().setVisible(true);
+					//			new HomePage().setVisible(true);
 							}
 							catch(Exception exp)
 							{

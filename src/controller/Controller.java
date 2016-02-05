@@ -61,4 +61,14 @@ public class Controller {
 		}
 		return null;
 	}
+	
+	public String getAnnoByTitle(String title)
+	{
+		for(Photo p:photos)
+		{
+			if(p.getTitle().equals(title))
+				return p.getAnnotation();
+		}
+		return null;
+	}
 }
